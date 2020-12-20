@@ -70,44 +70,36 @@ function renderSiderBar() {
     collapsable: true,
     children: [
       '',
-      'significance'
     ]
   },
   {
     title: '前端基础',
     collapsable: true,
     children: [
-      'htmlBase',
-      'jsBase',
-      'ES6_11',
     ]
   },
   {
     title: '浏览器基础',
     collapsable: true,
     children: [
-      'browser'
     ]
   },
   {
     title: '框架原理',
     collapsable: true,
     children: [
-      'vueFrame'
     ]
   },
   {
     title: '手写源码',
     collapsable: true,
     children: [
-      'handwriting'
     ]
   },
   {
     title: '工程化',
     collapsable: true,
     children: [
-      'webpack'
     ]
   },
 
@@ -115,45 +107,37 @@ function renderSiderBar() {
     title: 'Typescript',
     collapsable: true,
     children: [
-      'TypeScript'
     ]
   },
   {
     title: '计算机基础',
     collapsable: true,
     children: [
-      'HTTP',
     ]
   },
   {
     title: '数据结构与算法',
     collapsable: true,
     children: [
-      'structure',
-      'algorithm'
     ]
   },
   {
     title: '项目类',
     collapsable: true,
     children: [
-      'project',
-      'resume'
+      'login'
     ]
   },
   {
     title: '编程相关',
     collapsable: true,
     children: [
-      'pattern',
-      'function'
     ]
   },
   {
     title: '其他',
     collapsable: true,
     children: [
-      'other'
     ]
   },
   ])
