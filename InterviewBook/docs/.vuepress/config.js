@@ -21,7 +21,7 @@ module.exports = ctx => ({
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', }]
   ],
   themeConfig: {
-    repo: 'TJH0420/BlackUncle_Interview',
+    repo: 'BlackUncle666/BlackUncle_Blog',
     editLinks: true,
     // docsDir: 'packages/docs/docs',
     locales: {
@@ -138,7 +138,9 @@ function renderSiderBar() {
     title: '其他',
     collapsable: true,
     children: [
-      'waibao'
+      'waibao',
+      'UI',
+      'young'
     ]
   },
   ])
