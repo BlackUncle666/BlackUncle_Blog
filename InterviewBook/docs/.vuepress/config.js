@@ -138,6 +138,7 @@ function renderSiderBar() {
     title: '其他',
     collapsable: true,
     children: [
+      'waibao'
     ]
   },
   ])
