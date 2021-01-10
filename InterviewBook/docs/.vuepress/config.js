@@ -76,6 +76,8 @@ function renderSiderBar() {
     title: '前端基础',
     collapsable: true,
     children: [
+      'html5',
+      'css3'
     ]
   },
   {
