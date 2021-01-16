@@ -143,7 +143,9 @@ function renderSiderBar() {
     children: [
       'waibao',
       'UI',
-      'young'
+      'young',
+      'month30k',
+      'pinxixi'
     ]
   },
   ])
