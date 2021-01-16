@@ -77,7 +77,8 @@ function renderSiderBar() {
     collapsable: true,
     children: [
       'html5',
-      'css3'
+      'css3',
+      'cssQue'
     ]
   },
   {
