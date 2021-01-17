@@ -78,7 +78,8 @@ function renderSiderBar() {
     children: [
       'html5',
       'css3',
-      'cssQue'
+      'cssQue',
+      'JS'
     ]
   },
   {
