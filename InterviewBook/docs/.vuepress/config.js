@@ -86,6 +86,7 @@ function renderSiderBar() {
     title: '浏览器基础',
     collapsable: true,
     children: [
+      'browser'
     ]
   },
   {
