@@ -101,6 +101,7 @@ function renderSiderBar() {
     title: '手写源码',
     collapsable: true,
     children: [
+      'write'
     ]
   },
   {
