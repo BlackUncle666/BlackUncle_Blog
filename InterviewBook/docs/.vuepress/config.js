@@ -116,6 +116,7 @@ function renderSiderBar() {
     title: 'Typescript',
     collapsable: true,
     children: [
+      'TS'
     ]
   },
   {
