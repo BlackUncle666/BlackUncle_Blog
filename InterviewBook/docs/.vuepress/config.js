@@ -79,7 +79,8 @@ function renderSiderBar() {
       'html5',
       'css3',
       'cssQue',
-      'JS'
+      'JS',
+      'ES6'
     ]
   },
   {
@@ -142,6 +143,7 @@ function renderSiderBar() {
     title: '编程相关',
     collapsable: true,
     children: [
+      'pattern'
     ]
   },
   {
