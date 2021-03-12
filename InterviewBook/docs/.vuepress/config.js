@@ -136,6 +136,7 @@ function renderSiderBar() {
     title: '项目类',
     collapsable: true,
     children: [
+      'project',
       'login'
     ]
   },
