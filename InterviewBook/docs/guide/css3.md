@@ -38,17 +38,22 @@
 - perspective / matrix / matrix3d 矩阵
 
 ## flex
-- flex-direction
+- flex-direction 
+  - 定义主轴的方向
   - row | row-reverse | column | column-reverse
-- flex-wrap
+- flex-wrap 
+  - 定义是否换行
   - nowrap | wrap | wrap-reverse
 - flex-flow
   - flex-direction || flex-wrap
-- justify-content
+- justify-content 
+  - 定义在主轴上的对齐方式
   - flex-start | flex-end | center | space-between | space-around;
-- align-items
+- align-items 
+  - 定义在交叉轴上对齐方式
   - flex-start | flex-end | center | baseline | stretch
-- align-content
+- align-content 
+  - 定义多根轴线的对齐方式
   - flex-start | flex-end | center | space-between | space-around | stretch
 
 ## @media媒体查询
