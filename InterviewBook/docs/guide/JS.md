@@ -132,15 +132,22 @@ Array.isArray({0: 'a', length: 1}); // => false
 - some: 有一项返回true，则整体为true
 - every: 有一项返回false，则整体为false
 - join: 通过指定连接符生成字符串
-- push / pop: 末尾推入和弹出，改变原数组， 返回推入/弹出项
-- unshift / shift: 头部推入和弹出，改变原数组，返回操作项
+- push / pop: 末尾新增和删除，改变原数组， 返回新增/删除项
+- unshift / shift: 头部新增和删除，改变原数组，返回操作项
 - sort(fn) / reverse: 排序与反转，改变原数组
 - concat: 连接数组，不影响原数组， 浅拷贝
 - slice(start, end): 返回截断后的新数组，不改变原数组
 - splice(start, number, value...): 返回删除元素组成的数组，value为插入项，改变原数组
 - indexOf / lastIndexOf(value, fromIndex): 查找数组项，返回对应的下标
 - reduce / reduceRight(fn(prev, cur)， defaultPrev): 两两执行，prev 为上次化简函数的return值，cur为当前值(从第二项开始)
-
+- Array.from() 转为真数组
+- Array.of() 将一组值转换为数组
+- copyWithin()
+- find() 和 findIndex() 找出第一个符合条件的数组成员或下标
+- fill() 填充
+- entries()，keys() 和 values()
+- includes() 返回一个布尔值，表示某个数组是否包含给定的值
+- flat()，flatMap() 数组扁平化
 ## 作用域
 - 函数作用域：指在函数内声明的所有变量在函数体内始终是可见的，可以在整个函数的范围内使用及复用
 - 块级作用域：指在变量声明的代码段之外是不可见的。参考：ES6的let以及const
