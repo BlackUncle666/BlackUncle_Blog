@@ -35,11 +35,10 @@
 ## 移动端适配
 - 一般使用rem或vw进行适配
 - caniuse网站，显示rem支持性更好
-- 采用 vw + rem 的方案
 - rem适配的本质是通过动态设置html的font-size来改变大小，其随之而变
-- rem：小红书/微博/美团/B站/搜狐/携程/大众点评/知乎/陆金所/腾讯
-- vw：拍拍贷
-- vw+rem：京东/网易/饿了么
+- rem：移动端网站，如门户网等
+- vw：简单的活动页，如邀请页等
+- vw+rem：结合使用
 
 ## 盒子模型
 - 每一个盒子都由四个部分组成，由于内而外分别是内容区域（content area），内边距区域（padding area），边框区域（border area），外边距区域（margin area）
@@ -47,15 +46,16 @@
   - W3C标准盒模型中，width指的是content的宽度
   - IE标准盒模型中，width指的是content + padding + border
 - css3中加入box-sizing:content-box | border-box
-- viewport
-  - width：device-width / initial-scale / minimum-scale / maximum-scale / user-scalable
+
+## viewport
+  - device-width / initial-scale / minimum-scale / maximum-scale / user-scalable
 
 ## 水平居中的方法
 - 元素为行内元素，设置父元素text-align:center
 - 如果元素宽度固定，可以设置左右margin为auto
 - 如果元素为绝对定位，设置父元素position为relative，元素设left:0;right:0;margin:auto;
 - 使用flex-box布局，指定justify-content属性为center
-- display设置为table-ceil
+- display设置为table-cell
 
 ## 垂直居中的方法
 - 将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle
@@ -65,10 +65,10 @@
 - 文本垂直居中设置line-height为height值
 
 ## rem、em、vh、vw 和 px 的区别
-- 相对于HTML根元素的字体大小：rem
-- 相对于父级的字体大小：em
-- 相对于视口的高度和宽度，1vh等于1/100的视口高度：vh和vw
-- 物理像素：px
+- rem：相对于HTML根元素的字体大小
+- em：如果当前没有设置字体大小，就相对于父级的字体大小
+- vh和vw：相对于视口的高度和宽度，1vh等于1/100的视口高度
+- px：物理像素
 
 ## 谈谈对BFC的理解
 - 含义：块级格式化上下文（Block Formatting Context）

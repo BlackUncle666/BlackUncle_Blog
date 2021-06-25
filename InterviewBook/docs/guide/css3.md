@@ -55,7 +55,13 @@
 - align-content 
   - 定义多根轴线的对齐方式
   - flex-start | flex-end | center | space-between | space-around | stretch
-
+- 以下6个属性设置在项目上
+  - order 属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。
+  - flex-grow 属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+  - flex-shrink 属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+  - flex-basis 属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。
+  - flex 属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+  - align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
 ## @media媒体查询
 - max-width/min-width/device-width
 
@@ -72,3 +78,12 @@
 - linear-gradient/radial-gradient
 
 ## 多列布局（column）
+- 1. columns: column-width || column-count
+- 2. column-width：length | auto 设置对象的宽度；使用像素表示。
+- 3. column-count：integer | auto 用来定义对象中的列数，使用数字 1-10表示。
+- 4. column-gap: normal || length， normal是默认值，为1em， length 是用来设置列与列之间的间距。
+- 5. column-rule：column-rule-width || column-rule-style || column-rule-color
+- 6. column-fill：auto | balance
+- 7. column-break-before：auto | always | avoid | left | right | page | column | avoid-page | avoid-column
+- 8. column-break-after：auto | always | avoid | left | right | page | column | avoid-page | avoid-column
+- 9. column-break-inside：auto | avoid | avoid-page | avoid-column
