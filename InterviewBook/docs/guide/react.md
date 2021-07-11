@@ -37,7 +37,18 @@
 - 发展前景：未来函数至福建将会成为主流，因为它可以更好的避免this问题，规范和复用逻辑
 
 ## 请说一下React中的渲染流程
-- 
+- 对于首次渲染，React 的主要工作就是将 React.render 接收到的 VNode 转化 Fiber 树，并根据 Fiber 树的层级关系，构建生成出 DOM 树并渲染至屏幕中。
+- 而对于更新渲染时，Fiber 树已经存在于内存中了，所以 React 更关心的是计算出 Fiber 树中的各个节点的差异，并将变化更新到屏幕中。
+- React 将渲染更新的过程分为了两个阶段。render 阶段，利用双缓冲技术，在内存中构造另一颗 Fiber 树，在其上进行协调计算，找到需要更新的节点并记录，这个过程会被重复中断恢复执行。commit 阶段，根据 render 阶段的计算结果，执行更新操作，这个过程是同步执行的。
+- Fiber有两层含义：程序架构、数据结构。
+- 需要程序具备的可中断、可恢复的特性，Fiber 是一个链表结构，通过child、sibling、return三个属性记录了树型结构中的子节点、兄弟节点、父节点的关系信息，从而可以实现从任一节点出发，都可以访问其他节点的特性。除了作为链表的结构之外，程序运行时还需要记录组件的各种状态、实例、真实DOM元素映射等等信息，这些都会被记录在 Fiber 这个对象身上。
+
+- 根组件的 JSX 定义会被 babel 转换为 React.createElement 的调用，其返回值为 VNode树。
+- React.render 调用，实例化 FiberRootNode，并创建 根Fiber 节点 HostRoot 赋值给 FiberRoot 的 current 属性
+- 创建更新对象，其更新内容为 React.render 接受到的第一个参数 VNode树，将更新对象添加到 HostRoot 节点的 updateQueue 中
+- 处理更新队列，从 HostRoot 节点开始遍历，在其 alternate 属性中构建 WIP 树，在构建 Fiber 树的过程中会根据 VNode 的类型进行组件实例化、生命周期调用等工作，对需要操作视图的动作将其保存到 Fiber 节点的 effectTag 上面，将需要更新在DOM上的属性保存至 updateQueue 中，并将其与父节点的 lastEffect 连接。
+- 当整颗树遍历完成后，进入 commit 阶段，此阶段就是将 effectList 收集的 DOM 操作应用到屏幕上。
+- commit 完成将 current 替换为 WIP 树。
 
 ## 请说一下你对reacr合成事件的理解
 - React 合成事件（SyntheticEvent）是 React 模拟原生 DOM 事件所有能力的一个事件对象，即浏览器原生事件的跨浏览器包装器。它根据 W3C 规范 来定义合成事件，兼容所有浏览器，拥有与浏览器原生事件相同的接口。 
@@ -53,6 +64,38 @@
 - 判断一个组件是不是受控组件，就要看这个表单组件它是否由react的state状态控制，它的值是否保存在this.state中，是否只能使用setState将修改后的值同步到初始变量。
 简而言之，表单数据状态受React的state控制，通过setState修改的就是受控组件，通过DOM控制，不受state控制的就是非受控组件
 ## 谈谈react的生命周期
+一个完整的React组件生命周期会依次调用如下钩子：
+旧生命周期：
+- 挂载
+  - constructor
+  - componentWillMount
+  - render
+  - componentDidMount
+- 更新
+  - componentWillReceiveProps
+  - shouldComponentUpdate
+  - componentWillUpdate
+  - render
+  - componentDidUpdate
+- 卸载
+  - componentWillUnmount
+
+新生命周期
+- 挂载
+  - constructor
+  - getDerivedStateFromProps
+  - render
+  - componentDidMount 
+- 更新
+  - getDerivedStateFromProps
+  - shouldComponentUpdate
+  - render
+  - getSnapshotBeforeUpdate
+  - componentDidUpdate
+- 卸载
+  - componentWillUnmount
+
+从以上生命周期的对比，我们不难看出，React从v16.3开始废弃 componentWillMount componentWillReceiveProps componentWillUpdate 三个钩子函数
 
 ## 谈谈react中refs的使用
 Refs 是使用 React.createRef() 创建的，并通过 ref 属性附加到 React 元素。在构造组件时，通常将 Refs 分配给实例属性，以便可以在整个组件中引用它们。
@@ -90,6 +133,20 @@ Mixin模式就是一些提供能够被一个或者一组子类简单继承功能
 - 首先，Hooks 通常支持提取和重用跨多个组件通用的有状态逻辑，而无需承担高阶组件或渲染 props 的负担。Hooks 可以轻松地操作函数组件的状态，而不需要将它们转换为类组件。
 - Hooks 在类中不起作用，通过使用它们，咱们可以完全避免使用生命周期方法，例如 componentDidMount、componentDidUpdate、componentWillUnmount。相反，使用像useEffect这样的内置钩子。
 ## 谈谈你对Redux的了解
+- Redux 三大概念：Store，Action，Reducers 
+- Store->View 更新视图
+- View->Reducers 发起更新动作
+- Reducers->tore 更新状态
+- 更新 Store 的状态有且仅有一种方式：那就是调用 dispatch 函数，传递一个 action 给这个函数 。
+- reducer 是一个普通的 JavaScript 函数，它接收两个参数：state 和 action，前者为 Store 中存储的那棵 JavaScript 对象状态树，后者即为我们在组件中 dispatch 的那个 Action。
+- dispatch(action) 用来在 React 组件中发出修改 Store 中保存状态的指令。在我们需要新加一个待办事项时，它取代了之前定义在组件中的 onSubmit 方法。
+- reducer(state, action) 用来根据这一指令修改 Store 中保存状态对应的部分。在我们需要新加一个待办事项时，它取代了之前定义在组件中的 this.setState 操作。
+- connect(mapStateToProps) 用来将更新好的数据传给组件，然后触发 React 重新渲染，显示最新的状态。它架设起 Redux 和 React 之间的数据通信桥梁。
 ## 谈谈Redux和MobX的区别
+- Redux 认为，数据的一致性很重要，为了保持数据的一致性，要求Store 中的数据尽量范式化，也就是减少一切不必要的冗余，为了限制对数据的修改，要求 Store 中数据是不可改的（Immutable），只能通过 action 触发 reducer 来更新 Store。
+- Mobx 也认为数据的一致性很重要，但是它认为解决问题的根本方法不是让数据范式化，而是不要给机会让数据变得不一致。所以，Mobx 鼓励数据干脆就“反范式化”，有冗余没问题，只要所有数据之间保持联动，改了一处，对应依赖这处的数据自动更新，那就不会发生数据不一致的问题。
+- Redux 鼓励一个应用只用一个 Store，Mobx 鼓励使用多个 Store；
+- Redux 使用“拉”的方式使用数据，这一点和 React是一致的，但 Mobx 使用“推”的方式使用数据，和 RxJS 这样的工具走得更近；
+- Redux 鼓励数据范式化，减少冗余，Mobx 容许数据冗余，但同样能保持数据一致。
 
 ## 谈谈React18
